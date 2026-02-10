@@ -1,0 +1,13 @@
+azure-ai-projects
+azure-identity
+openai
+azure-cosmos
+azure-monitor-opentelemetry
+jsonschema
+opentelemetry-sdk
+pydantic>=2
+python-dotenv
+pyyaml
+
+pytest
+ruff

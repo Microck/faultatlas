@@ -1,0 +1,5 @@
+# Local defaults / placeholders for Foundry connectivity.
+# Environment variables take precedence over this file.
+
+project_endpoint: ""
+model_deployment: ""
