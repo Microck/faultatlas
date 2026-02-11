@@ -1,0 +1,38 @@
+{
+  "findings": {
+    "trace_analyzer": [
+      {
+        "failure_step": 1,
+        "total_steps": 1,
+        "failure_location": "step 1 (subject_validation)",
+        "error": "subject=booking date format mismatch",
+        "reasoning_chain": [
+          "subject=booking attempted to call search_flights with DD/MM/YYYY"
+        ]
+      }
+    ],
+    "tool_analyzer": [
+      {
+        "tool": "search_flights",
+        "issue": "tool_misuse_detected",
+        "expected": {
+          "date": "YYYY-MM-DD"
+        },
+        "actual": {
+          "schema_mismatches": [
+            {
+              "path": "date",
+              "message": "Pattern mismatch"
+            }
+          ],
+          "wrong_tool_selection": false,
+          "wrong_tool_reason": null,
+          "similar_past_failure_ids": [
+            "booking-001",
+            "booking-002"
+          ]
+        }
+      }
+    ]
+  }
+}

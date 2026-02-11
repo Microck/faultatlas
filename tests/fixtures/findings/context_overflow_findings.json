@@ -1,0 +1,30 @@
+{
+  "findings": {
+    "trace_analyzer": [
+      {
+        "failure_step": 4,
+        "total_steps": 5,
+        "failure_location": "step 4 (context_join)",
+        "error": "subject=search CONTEXT_OVERFLOW token limit reached while assembling context window",
+        "reasoning_chain": [
+          "subject=search loaded long conversation history",
+          "context_length_exceeded during context packing"
+        ]
+      }
+    ],
+    "tool_analyzer": [
+      {
+        "tool": "web_search",
+        "issue": null,
+        "expected": {
+          "query": "flights"
+        },
+        "actual": {
+          "schema_mismatches": [],
+          "wrong_tool_selection": false,
+          "wrong_tool_reason": null
+        }
+      }
+    ]
+  }
+}

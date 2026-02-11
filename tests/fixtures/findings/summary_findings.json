@@ -1,0 +1,32 @@
+{
+  "findings": {
+    "trace_analyzer": [
+      {
+        "failure_step": 1,
+        "total_steps": 1,
+        "failure_location": "step 1 (subject_result)",
+        "error": "subject=summary produced unsupported claim",
+        "reasoning_chain": [
+          "subject=summary trace metadata hallucinated=true",
+          "subject=summary generated fact not present in sources"
+        ]
+      }
+    ],
+    "tool_analyzer": [
+      {
+        "tool": "summarize_sources",
+        "issue": null,
+        "expected": {
+          "source_count": 2
+        },
+        "actual": {
+          "schema_mismatches": [],
+          "wrong_tool_selection": false,
+          "past_failure_ids": [
+            "summary-hallucination-007"
+          ]
+        }
+      }
+    ]
+  }
+}

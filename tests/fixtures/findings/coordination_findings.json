@@ -1,0 +1,33 @@
+{
+  "findings": {
+    "trace_analyzer": [
+      {
+        "failure_step": 2,
+        "total_steps": 3,
+        "failure_location": "step 2 (handoff)",
+        "error": "subject=booking COORDINATION_FAILURE state lost during handoff from agent A to agent B",
+        "reasoning_chain": [
+          "subject=booking delegate to agent B for pricing",
+          "handoff payload missing booking reference"
+        ]
+      }
+    ],
+    "tool_analyzer": [
+      {
+        "tool": "delegate_task",
+        "issue": null,
+        "expected": {
+          "related_failure_ids": [
+            "coordination-042",
+            "coordination-043"
+          ]
+        },
+        "actual": {
+          "schema_mismatches": [],
+          "wrong_tool_selection": false,
+          "wrong_tool_reason": null
+        }
+      }
+    ]
+  }
+}

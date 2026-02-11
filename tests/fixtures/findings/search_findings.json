@@ -1,0 +1,32 @@
+{
+  "findings": {
+    "trace_analyzer": [
+      {
+        "failure_step": 1,
+        "total_steps": 1,
+        "failure_location": "step 1 (agent_planning)",
+        "error": "subject=search missing required info for itinerary; multiple interpretations remain",
+        "reasoning_chain": [
+          "subject=search missing required info on travel dates",
+          "subject=search detected multiple interpretations for destination"
+        ]
+      }
+    ],
+    "tool_analyzer": [
+      {
+        "tool": "web_search",
+        "issue": null,
+        "expected": {
+          "related_failure_ids": [
+            "search-ambiguity-100"
+          ]
+        },
+        "actual": {
+          "schema_mismatches": [],
+          "wrong_tool_selection": false,
+          "wrong_tool_reason": null
+        }
+      }
+    ]
+  }
+}
