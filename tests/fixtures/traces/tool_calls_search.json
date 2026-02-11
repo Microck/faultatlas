@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "failure_id": "search-tools-20260211022000000000",
+  "subject": "search",
+  "status": "failed",
+  "started_at": "2026-02-11T02:20:00.000000Z",
+  "ended_at": "2026-02-11T02:20:00.010000Z",
+  "steps": [
+    {
+      "name": "agent_planning",
+      "kind": "reasoning",
+      "input": {
+        "instruction": "Search for direct flights from NYC to LAX and summarize the best options."
+      },
+      "output": {
+        "tool_calls": [
+          {
+            "tool": "summarize_sources",
+            "args": {
+              "sources": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "agent_followup",
+      "kind": "tool_call",
+      "output": {
+        "tool_calls": [
+          {
+            "tool": "web_search",
+            "args": {
+              "query": "direct flights NYC to LAX"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
