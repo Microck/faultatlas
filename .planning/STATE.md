@@ -2,11 +2,11 @@
 
 ## Current Position
 
-Phase: 3 of 4 (Diagnosis & Fixes)
-Plan: 3 of 3
-Status: Phase complete
-Last activity: 2026-02-11 - Approved Phase 3 verification checkpoint (live Cosmos checks deferred)
-Progress: █████████░░░ 9/12 plans (75%)
+Phase: 4 of 4 (Demo & Submit)
+Plan: 2 of 3
+Status: In progress
+Last activity: 2026-02-11 - Completed 04-02-PLAN.md
+Progress: ██████████░░ 10/12 plans (83%)
 
 ---
 
@@ -17,7 +17,7 @@ Progress: █████████░░░ 9/12 plans (75%)
 | 1 | Foundation | Complete | 3/3 plans |
 | 2 | Analysis Pipeline | Complete | 3/3 plans |
 | 3 | Diagnosis & Fixes | Complete | 3/3 plans |
-| 4 | Demo & Submit | Not Started | 0/3 plans |
+| 4 | Demo & Submit | In progress | 1/3 plans |
 
 ---
 
@@ -56,6 +56,8 @@ Progress: █████████░░░ 9/12 plans (75%)
 | 03-02 | Fix proposal diffs use stdlib unified format (`---`/`+++`) generated from exact before/after snippets | Satisfies FIX-04 reviewability and keeps change artifacts auditable |
 | 03-03 | FixHistory now uses auto backend selection (Cosmos when all fix-history env vars exist, otherwise memory) | Keeps local development unblocked while enabling Cosmos-backed similarity history in configured environments |
 | 03-03 | DiagnosisEngine now resolves DIAG-04 links through `FixHistory.find_similar(...)` rather than payload introspection | Makes similarity linking explicit, testable, and backend-driven |
+| 04-02 | DEMO-04 documentation defines exactly 8 counted agents and treats AutopsyController/AutopsyPipeline as orchestration glue | Keeps README and architecture diagram aligned for judge review |
+| 04-02 | Mermaid `.mmd` is canonical with README fallback render command for PNG generation | Preserves deliverability when headless Mermaid CLI rendering is unavailable |
 
 ---
 
@@ -63,6 +65,7 @@ Progress: █████████░░░ 9/12 plans (75%)
 
 - Live Cosmos verification still requires user-provided `COSMOS_ENDPOINT`, `COSMOS_KEY`, `COSMOS_DATABASE`, `COSMOS_CONTAINER_TRACES`, and `COSMOS_CONTAINER_FIXES`.
 - System Python in this environment lacks required runtime modules; use `.venv/bin/python -m ...` for deterministic plan verification.
+- `docs/architecture.png` still needs manual rendering in a Chromium-capable environment if the final submission requires a raster image artifact.
 
 ---
 
@@ -70,6 +73,7 @@ Progress: █████████░░░ 9/12 plans (75%)
 
 | Date | Activity |
 |------|----------|
+| 2026-02-11 | Completed Phase 4 Plan 02 execution, added README/demo quickstart docs, failure taxonomy, and architecture Mermaid source |
 | 2026-02-11 | User approved Phase 3 verification checkpoint; phase marked complete with live Cosmos similarity checks pending credentials |
 | 2026-02-11 | Completed Phase 3 Plan 03 execution, added fix-history storage backends, similarity lookup tests, and DiagnosisEngine DIAG-04 wiring |
 | 2026-02-11 | Completed Phase 3 Plan 02 execution, added fix proposal models, unified diff utilities, taxonomy-wide FixGenerator coverage, and tests |
@@ -87,8 +91,8 @@ Progress: █████████░░░ 9/12 plans (75%)
 
 ## Session Continuity
 
-Last session: 2026-02-11T04:42:05Z
-Stopped at: Phase 3 verification approved (human-needed Cosmos checks deferred)
+Last session: 2026-02-11T17:42:37Z
+Stopped at: Completed 04-02 documentation plan (README + taxonomy + architecture source)
 Resume file: .planning/phases/04-demo-submit/04-01-PLAN.md
 
 ---
