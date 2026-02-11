@@ -3,10 +3,10 @@
 ## Current Position
 
 Phase: 4 of 4 (Demo & Submit)
-Plan: 2 of 3
-Status: In progress
-Last activity: 2026-02-11 - Completed 04-01-PLAN.md
-Progress: ███████████░ 11/12 plans (92%)
+Plan: 3 of 3
+Status: Phase complete
+Last activity: 2026-02-11 - Completed 04-03-PLAN.md
+Progress: ████████████ 12/12 plans (100%)
 
 ---
 
@@ -17,7 +17,7 @@ Progress: ███████████░ 11/12 plans (92%)
 | 1 | Foundation | Complete | 3/3 plans |
 | 2 | Analysis Pipeline | Complete | 3/3 plans |
 | 3 | Diagnosis & Fixes | Complete | 3/3 plans |
-| 4 | Demo & Submit | In progress | 2/3 plans |
+| 4 | Demo & Submit | Complete | 3/3 plans |
 
 ---
 
@@ -58,6 +58,8 @@ Progress: ███████████░ 11/12 plans (92%)
 | 03-03 | DiagnosisEngine now resolves DIAG-04 links through `FixHistory.find_similar(...)` rather than payload introspection | Makes similarity linking explicit, testable, and backend-driven |
 | 04-02 | DEMO-04 documentation defines exactly 8 counted agents and treats AutopsyController/AutopsyPipeline as orchestration glue | Keeps README and architecture diagram aligned for judge review |
 | 04-02 | Mermaid `.mmd` is canonical with README fallback render command for PNG generation | Preserves deliverability when headless Mermaid CLI rendering is unavailable |
+| 04-03 | Recording checklist is scenario-anchored and prioritizes live run with explicit mock fallback | Keeps manual video capture repeatable without blocking on Azure/runtime constraints |
+| 04-03 | Submission checklist references both `docs/architecture.png` and `docs/architecture.mmd` | Prevents packaging dead-ends when raster diagram export is unavailable |
 | 04-01 | Live demo runner calls real modules end-to-end (`run_with_failure_detection` → `AutopsyPipeline` → `DiagnosisEngine` → `FixGenerator`) | Demonstrates actual pipeline behavior for video capture instead of synthetic helper wrappers |
 | 04-01 | Mock mode is fixture-backed via `demo/sample_output.md` with the same output sections as live mode | Guarantees reliable no-Azure fallback and keeps narration consistent between modes |
 
@@ -68,6 +70,7 @@ Progress: ███████████░ 11/12 plans (92%)
 - Live Cosmos verification still requires user-provided `COSMOS_ENDPOINT`, `COSMOS_KEY`, `COSMOS_DATABASE`, `COSMOS_CONTAINER_TRACES`, and `COSMOS_CONTAINER_FIXES`.
 - System Python in this environment lacks required runtime modules; use `.venv/bin/python -m ...` for deterministic plan verification.
 - `docs/architecture.png` still needs manual rendering in a Chromium-capable environment if the final submission requires a raster image artifact.
+- Final manual submission steps remain outside automation: record `demo/video.mp4` and complete the hackathon portal submission.
 
 ---
 
@@ -75,6 +78,7 @@ Progress: ███████████░ 11/12 plans (92%)
 
 | Date | Activity |
 |------|----------|
+| 2026-02-11 | Completed Phase 4 Plan 03 execution, finalized recording and submission checklists, and closed Demo & Submit phase |
 | 2026-02-11 | Completed Phase 4 Plan 01 execution, added a 2-minute demo script, live/mock demo runner, and sample output fallback |
 | 2026-02-11 | Completed Phase 4 Plan 02 execution, added README/demo quickstart docs, failure taxonomy, and architecture Mermaid source |
 | 2026-02-11 | User approved Phase 3 verification checkpoint; phase marked complete with live Cosmos similarity checks pending credentials |
@@ -94,9 +98,9 @@ Progress: ███████████░ 11/12 plans (92%)
 
 ## Session Continuity
 
-Last session: 2026-02-11T17:45:40Z
-Stopped at: Completed 04-01 demo script and runner plan
-Resume file: .planning/phases/04-demo-submit/04-03-PLAN.md
+Last session: 2026-02-11T19:27:57Z
+Stopped at: Completed 04-03 recording/submission checklist plan
+Resume file: .planning/phases/04-demo-submit/04-03-SUMMARY.md
 
 ---
 
