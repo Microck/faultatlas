@@ -3,10 +3,10 @@
 ## Current Position
 
 Phase: 2 of 4 (Analysis Pipeline)
-Plan: 0 of 3
-Status: Ready for planning
-Last activity: 2026-02-11 - Phase 1 approved and marked complete
-Progress: ███░░░░░░░░░ 3/12 plans (25%)
+Plan: 1 of 3
+Status: In progress
+Last activity: 2026-02-11 - Completed 02-01-PLAN.md
+Progress: ████░░░░░░░░ 4/12 plans (33%)
 
 ---
 
@@ -15,7 +15,7 @@ Progress: ███░░░░░░░░░ 3/12 plans (25%)
 | Phase | Name | Status | Progress |
 |-------|------|--------|----------|
 | 1 | Foundation | Complete | 3/3 plans |
-| 2 | Analysis Pipeline | Not Started | 0/3 plans |
+| 2 | Analysis Pipeline | In Progress | 1/3 plans |
 | 3 | Diagnosis & Fixes | Not Started | 0/3 plans |
 | 4 | Demo & Submit | Not Started | 0/3 plans |
 
@@ -44,6 +44,8 @@ Progress: ███░░░░░░░░░ 3/12 plans (25%)
 | 01-02 | Runner reports `failed`/`hallucinated` in JSON while always exiting 0 | Allows deterministic batch execution without shell-level flakiness |
 | 01-03 | Pinned `TraceRecord` contract to `schema_version=1` with `extra="forbid"` | Prevents silent schema drift before analyzers depend on trace payload shape |
 | 01-03 | Defaulted TraceStore to memory fallback and keyed persistence by `failure_id` | Keeps local end-to-end runs unblocked while preserving direct retrieval semantics |
+| 02-01 | Failure step indexing is 1-based (`step N of M`) in TraceAnalyzer output | Matches requirement language and keeps analyzer output unambiguous |
+| 02-01 | Reasoning chain extraction prioritizes `thought`/`decision` then deterministic fallback from trace artifacts | Preserves explicit model reasoning when present while guaranteeing stable output for Phase 1 traces |
 
 ---
 
@@ -58,6 +60,7 @@ Progress: ███░░░░░░░░░ 3/12 plans (25%)
 
 | Date | Activity |
 |------|----------|
+| 2026-02-11 | Completed Phase 2 Plan 01 execution, added trace/findings models and TraceAnalyzer with fixture-driven tests |
 | 2026-02-11 | User approved Phase 1 verification checkpoint; phase marked complete with Cosmos live-check pending |
 | 2026-02-11 | Completed Phase 1 Plan 03 execution, added failure detection + trace persistence, and updated state |
 | 2026-02-11 | Completed Phase 1 Plan 02 execution, created deterministic subject scenarios, updated state |
@@ -68,9 +71,9 @@ Progress: ███░░░░░░░░░ 3/12 plans (25%)
 
 ## Session Continuity
 
-Last session: 2026-02-11T01:43:00Z
-Stopped at: Phase 1 execution complete and approved
-Resume file: .planning/phases/02-analysis-pipeline/02-01-PLAN.md
+Last session: 2026-02-11T02:12:26Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: .planning/phases/02-analysis-pipeline/02-02-PLAN.md
 
 ---
 
