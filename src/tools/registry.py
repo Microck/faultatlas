@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any
 
-from jsonschema import Draft202012Validator
+from src.tools.schema_registry import SchemaRegistry
 
 
 class ToolValidationError(Exception):
@@ -33,27 +32,18 @@ class ToolValidationError(Exception):
 
 class ToolRegistry:
     def __init__(self, schemas_dir: Path | None = None) -> None:
-        self._schemas_dir = schemas_dir or Path(__file__).resolve().parent / "schemas"
-        self._validators = self._load_validators()
+        try:
+            self._schema_registry = SchemaRegistry(schemas_dir=schemas_dir)
+        except ValueError as error:
+            raise ToolValidationError(
+                "registry",
+                str(error),
+                code="schema_load_error",
+            ) from error
 
     @property
     def available_tools(self) -> tuple[str, ...]:
-        return tuple(sorted(self._validators))
-
-    def _load_validators(self) -> dict[str, Draft202012Validator]:
-        validators: dict[str, Draft202012Validator] = {}
-        for schema_path in sorted(self._schemas_dir.glob("*.json")):
-            schema = json.loads(schema_path.read_text(encoding="utf-8"))
-            validators[schema_path.stem] = Draft202012Validator(schema)
-
-        if not validators:
-            raise ToolValidationError(
-                "registry",
-                f"No tool schemas found in {self._schemas_dir}",
-                code="schema_load_error",
-            )
-
-        return validators
+        return self._schema_registry.list_tools()
 
     def validate_payload(self, payload: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(payload, dict):
@@ -81,27 +71,18 @@ class ToolRegistry:
         return self.validate(tool_name, args)
 
     def validate(self, tool_name: str, args: dict[str, Any]) -> dict[str, Any]:
-        validator = self._validators.get(tool_name)
-        if validator is None:
+        mismatches = self._schema_registry.validate(tool_name, args)
+        if mismatches:
+            first_mismatch = mismatches[0]
+            details = dict(first_mismatch.get("details", {}))
+            path = first_mismatch.get("path")
+            if path is not None:
+                details.setdefault("path", path)
             raise ToolValidationError(
                 tool_name,
-                f"Unknown tool '{tool_name}'.",
-                code="unknown_tool",
-                details={"available_tools": list(self.available_tools)},
-            )
-
-        errors = sorted(
-            validator.iter_errors(args),
-            key=lambda err: tuple(str(piece) for piece in err.absolute_path),
-        )
-        if errors:
-            first_error = errors[0]
-            error_path = ".".join(str(piece) for piece in first_error.absolute_path) or "<root>"
-            raise ToolValidationError(
-                tool_name,
-                first_error.message,
-                code="schema_validation_failed",
-                details={"path": error_path},
+                str(first_mismatch.get("message", "Tool validation failed.")),
+                code=str(first_mismatch.get("code", "schema_validation_failed")),
+                details=details,
             )
 
         return {"tool": tool_name, "args": args}
