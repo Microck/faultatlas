@@ -3,10 +3,10 @@
 ## Current Position
 
 Phase: 2 of 4 (Analysis Pipeline)
-Plan: 1 of 3
+Plan: 2 of 3
 Status: In progress
-Last activity: 2026-02-11 - Completed 02-01-PLAN.md
-Progress: ████░░░░░░░░ 4/12 plans (33%)
+Last activity: 2026-02-11 - Completed 02-02-PLAN.md
+Progress: █████░░░░░░░ 5/12 plans (42%)
 
 ---
 
@@ -15,7 +15,7 @@ Progress: ████░░░░░░░░ 4/12 plans (33%)
 | Phase | Name | Status | Progress |
 |-------|------|--------|----------|
 | 1 | Foundation | Complete | 3/3 plans |
-| 2 | Analysis Pipeline | In Progress | 1/3 plans |
+| 2 | Analysis Pipeline | In Progress | 2/3 plans |
 | 3 | Diagnosis & Fixes | Not Started | 0/3 plans |
 | 4 | Demo & Submit | Not Started | 0/3 plans |
 
@@ -46,6 +46,8 @@ Progress: ████░░░░░░░░ 4/12 plans (33%)
 | 01-03 | Defaulted TraceStore to memory fallback and keyed persistence by `failure_id` | Keeps local end-to-end runs unblocked while preserving direct retrieval semantics |
 | 02-01 | Failure step indexing is 1-based (`step N of M`) in TraceAnalyzer output | Matches requirement language and keeps analyzer output unambiguous |
 | 02-01 | Reasoning chain extraction prioritizes `thought`/`decision` then deterministic fallback from trace artifacts | Preserves explicit model reasoning when present while guaranteeing stable output for Phase 1 traces |
+| 02-02 | SchemaRegistry became the shared schema source while ToolRegistry stayed as a compatibility wrapper | Enables analyzer reuse without breaking subject scenario validation behavior |
+| 02-02 | Wrong-tool detection now checks `metadata.intended_tool` first, then falls back to search-intent heuristic | Makes SearchAgent TOOL_MISUSE diagnosable even when trace metadata is incomplete |
 
 ---
 
@@ -60,6 +62,7 @@ Progress: ████░░░░░░░░ 4/12 plans (33%)
 
 | Date | Activity |
 |------|----------|
+| 2026-02-11 | Completed Phase 2 Plan 02 execution, added shared SchemaRegistry and ToolAnalyzer with fixture-driven misuse checks |
 | 2026-02-11 | Completed Phase 2 Plan 01 execution, added trace/findings models and TraceAnalyzer with fixture-driven tests |
 | 2026-02-11 | User approved Phase 1 verification checkpoint; phase marked complete with Cosmos live-check pending |
 | 2026-02-11 | Completed Phase 1 Plan 03 execution, added failure detection + trace persistence, and updated state |
@@ -71,9 +74,9 @@ Progress: ████░░░░░░░░ 4/12 plans (33%)
 
 ## Session Continuity
 
-Last session: 2026-02-11T02:12:26Z
-Stopped at: Completed 02-01-PLAN.md
-Resume file: .planning/phases/02-analysis-pipeline/02-02-PLAN.md
+Last session: 2026-02-11T02:21:10Z
+Stopped at: Completed 02-02-PLAN.md
+Resume file: .planning/phases/02-analysis-pipeline/02-03-PLAN.md
 
 ---
 
