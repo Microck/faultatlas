@@ -22,6 +22,12 @@ The 8 agents shown in DEMO-04 are:
 - Diagram source (Mermaid): `docs/architecture.mmd`
 - Failure taxonomy: `docs/failure_taxonomy.md`
 
+If `docs/architecture.png` is missing in a headless environment, render it locally with:
+
+```bash
+npx -y @mermaid-js/mermaid-cli -i docs/architecture.mmd -o docs/architecture.png
+```
+
 ## Setup
 
 1. Install dependencies:

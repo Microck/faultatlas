@@ -1,0 +1,28 @@
+flowchart TD
+    BA[BookingAgent]
+    SEA[SearchAgent]
+    SUM[SummaryAgent]
+    FD[FailureDetector]
+    TS[(TraceStore\nmemory/cosmos)]
+    AP[AutopsyController / AutopsyPipeline\nOrchestration Glue (not counted as agent)]
+    TRA[TraceAnalyzer]
+    TOA[ToolAnalyzer]
+    DE[DiagnosisEngine]
+    FG[FixGenerator]
+
+    BA -->|subject run emits trace| FD
+    SEA -->|subject run emits trace| FD
+    SUM -->|subject run emits trace| FD
+
+    FD -->|store failure_event + trace_record| TS
+    FD -->|emit failure_id| AP
+    AP -->|retrieve by failure_id| TS
+    TS -->|return trace_record + failure_event| AP
+
+    AP -->|analysis input| TRA
+    AP -->|analysis input| TOA
+    TRA -->|trace findings| DE
+    TOA -->|tool findings| DE
+
+    DE -->|root cause + confidence| FG
+    FG -->|proposed fixes + diffs| AP
