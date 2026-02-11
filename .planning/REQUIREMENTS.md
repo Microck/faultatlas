@@ -13,12 +13,12 @@
 
 ### Analysis (ANLZ)
 
-- [ ] **ANLZ-01**: Trace Analyzer parses execution traces and identifies failure step
-- [ ] **ANLZ-02**: Trace Analyzer extracts reasoning chain that led to failure
-- [ ] **ANLZ-03**: Tool Analyzer validates parameters against tool schema
-- [ ] **ANLZ-04**: Tool Analyzer detects wrong tool selection
-- [ ] **ANLZ-05**: Autopsy Controller orchestrates Trace and Tool analyzers
-- [ ] **ANLZ-06**: Autopsy Controller collects findings into structured output
+- [x] **ANLZ-01**: Trace Analyzer parses execution traces and identifies failure step
+- [x] **ANLZ-02**: Trace Analyzer extracts reasoning chain that led to failure
+- [x] **ANLZ-03**: Tool Analyzer validates parameters against tool schema
+- [x] **ANLZ-04**: Tool Analyzer detects wrong tool selection
+- [x] **ANLZ-05**: Autopsy Controller orchestrates Trace and Tool analyzers
+- [x] **ANLZ-06**: Autopsy Controller collects findings into structured output
 
 ### Diagnosis (DIAG)
 
@@ -90,12 +90,12 @@
 | FOUND-04 | Phase 1: Foundation | Complete | SummaryAgent reliably hallucinates on minimal sources |
 | FOUND-05 | Phase 1: Foundation | Complete | Failure Detector catches all 3 failure types |
 | FOUND-06 | Phase 1: Foundation | Approved (pending live Cosmos check) | Traces stored in Cosmos DB, retrievable by failure_id |
-| ANLZ-01 | Phase 2: Analysis | Pending | Identifies failure step (N of M) for all test subjects |
-| ANLZ-02 | Phase 2: Analysis | Pending | Extracts reasoning chain as structured list |
-| ANLZ-03 | Phase 2: Analysis | Pending | Validates params against JSON schemas, reports mismatches |
-| ANLZ-04 | Phase 2: Analysis | Pending | Detects wrong tool selection in SearchAgent scenario |
-| ANLZ-05 | Phase 2: Analysis | Pending | Orchestrates analyzers and waits for completion |
-| ANLZ-06 | Phase 2: Analysis | Pending | Produces unified FindingsReport with structured output |
+| ANLZ-01 | Phase 2: Analysis | Complete | Identifies failure step (N of M) for all test subjects |
+| ANLZ-02 | Phase 2: Analysis | Complete | Extracts reasoning chain as structured list |
+| ANLZ-03 | Phase 2: Analysis | Complete | Validates params against JSON schemas, reports mismatches |
+| ANLZ-04 | Phase 2: Analysis | Complete | Detects wrong tool selection in SearchAgent scenario |
+| ANLZ-05 | Phase 2: Analysis | Complete | Orchestrates analyzers and waits for completion |
+| ANLZ-06 | Phase 2: Analysis | Complete | Produces unified FindingsReport with structured output |
 | DIAG-01 | Phase 3: Diagnosis | Pending | Classifies into taxonomy (TOOL_MISUSE, HALLUCINATION, etc.) |
 | DIAG-02 | Phase 3: Diagnosis | Pending | Produces root_cause with confidence score (0.0-1.0) |
 | DIAG-03 | Phase 3: Diagnosis | Pending | Generates human-readable explanation |
