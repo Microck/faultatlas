@@ -2,10 +2,21 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Any
+from typing import Any, Protocol
 
 from src.models.diagnosis import Diagnosis, FailureTaxonomy
 from src.models.findings import FindingsReport, ToolFinding, TraceFinding
+from src.storage.fix_history_memory import InMemoryFixHistory
+
+
+class _FixHistoryLookup(Protocol):
+    def find_similar(
+        self,
+        diagnosis: Diagnosis | dict[str, Any],
+        findings_report: FindingsReport | dict[str, Any],
+        *,
+        limit: int = 5,
+    ) -> list[str]: ...
 
 
 class DiagnosisEngine:
@@ -34,15 +45,10 @@ class DiagnosisEngine:
         "agent a",
         "agent b",
     )
-    _SIMILAR_ID_KEYS = frozenset(
-        {
-            "similar_past_failure_ids",
-            "similar_failure_ids",
-            "past_failure_ids",
-            "related_failure_ids",
-        }
-    )
     _SUBJECT_PATTERN = re.compile(r"subject\s*[:=]\s*([a-z0-9_-]+)", re.IGNORECASE)
+
+    def __init__(self, fix_history: _FixHistoryLookup | None = None) -> None:
+        self._fix_history: _FixHistoryLookup = fix_history or InMemoryFixHistory()
 
     def diagnose(self, findings_report: FindingsReport | dict[str, Any]) -> Diagnosis:
         report = FindingsReport.model_validate(findings_report)
@@ -51,14 +57,17 @@ class DiagnosisEngine:
             trace_findings, tool_findings
         )
 
-        return Diagnosis(
+        diagnosis = Diagnosis(
             root_cause=root_cause,
             sub_type=sub_type,
             confidence=confidence,
             explanation=explanation,
             affected_subjects=self._extract_affected_subjects(trace_findings, tool_findings),
-            similar_past_failure_ids=self._extract_similar_failure_ids(tool_findings),
+            similar_past_failure_ids=[],
         )
+
+        similar_failure_ids = self._fix_history.find_similar(diagnosis, report, limit=5)
+        return diagnosis.model_copy(update={"similar_past_failure_ids": similar_failure_ids})
 
     def _partition_findings(
         self, findings_report: FindingsReport
@@ -212,48 +221,6 @@ class DiagnosisEngine:
                 subjects.append(known_subject)
 
         return subjects
-
-    def _extract_similar_failure_ids(self, tool_findings: list[ToolFinding]) -> list[str]:
-        collected_ids: list[str] = []
-
-        for finding in tool_findings:
-            self._collect_similar_ids(finding.expected, collected_ids)
-            self._collect_similar_ids(finding.actual, collected_ids)
-
-        unique_ids: list[str] = []
-        seen: set[str] = set()
-        for failure_id in collected_ids:
-            if failure_id in seen:
-                continue
-            unique_ids.append(failure_id)
-            seen.add(failure_id)
-
-        return unique_ids
-
-    def _collect_similar_ids(self, payload: Any, output: list[str]) -> None:
-        if isinstance(payload, dict):
-            for key, value in payload.items():
-                if key.lower() in self._SIMILAR_ID_KEYS:
-                    output.extend(self._normalize_id_list(value))
-                self._collect_similar_ids(value, output)
-            return
-
-        if isinstance(payload, list):
-            for item in payload:
-                self._collect_similar_ids(item, output)
-
-    def _normalize_id_list(self, value: Any) -> list[str]:
-        if not isinstance(value, list):
-            return []
-
-        normalized_ids: list[str] = []
-        for item in value:
-            if not isinstance(item, str):
-                continue
-            candidate = item.strip()
-            if candidate:
-                normalized_ids.append(candidate)
-        return normalized_ids
 
 
 def diagnose(findings_report: FindingsReport | dict[str, Any]) -> Diagnosis:
