@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "failure_id": "summary-20260211020857896081",
+  "subject": "summary",
+  "status": "hallucinated",
+  "started_at": "2026-02-11T02:08:57.896081Z",
+  "ended_at": "2026-02-11T02:08:57.897762Z",
+  "steps": [
+    {
+      "name": "subject_result",
+      "kind": "model_output",
+      "input": {
+        "sources": [
+          "Source A: NYC to LAX flights operate daily.",
+          "Source B: Typical one-way fares are between $120 and $450."
+        ]
+      },
+      "output": {
+        "subject": "summary",
+        "status": "hallucinated",
+        "hallucinated": true,
+        "summary": "The sources mention regular routes and ordinary fares, and they also confirm a special promotion where every seat is free.",
+        "false_claim": "The provided sources prove every flight from NYC to LAX is free in 2026.",
+        "input": {
+          "sources": [
+            "Source A: NYC to LAX flights operate daily.",
+            "Source B: Typical one-way fares are between $120 and $450."
+          ]
+        },
+        "tool_calls": [
+          {
+            "tool": "summarize_sources",
+            "args": {
+              "sources": [
+                "Source A: NYC to LAX flights operate daily.",
+                "Source B: Typical one-way fares are between $120 and $450."
+              ]
+            }
+          }
+        ]
+      },
+      "error": "The provided sources prove every flight from NYC to LAX is free in 2026."
+    }
+  ]
+}

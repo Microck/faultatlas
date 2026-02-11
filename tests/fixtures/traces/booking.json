@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "failure_id": "booking-20260211020846041459",
+  "subject": "booking",
+  "status": "failed",
+  "started_at": "2026-02-11T02:08:46.041459Z",
+  "ended_at": "2026-02-11T02:08:46.048342Z",
+  "steps": [
+    {
+      "name": "subject_validation",
+      "kind": "validation_error",
+      "input": {
+        "tool": "search_flights",
+        "details": {
+          "path": "date"
+        }
+      },
+      "output": null,
+      "error": "'15/02/2026' does not match '^\\\\d{4}-\\\\d{2}-\\\\d{2}$'"
+    }
+  ]
+}

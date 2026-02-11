@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "failure_id": "search-20260211020857911161",
+  "subject": "search",
+  "status": "failed",
+  "started_at": "2026-02-11T02:08:57.911161Z",
+  "ended_at": "2026-02-11T02:08:57.913732Z",
+  "steps": [
+    {
+      "name": "subject_validation",
+      "kind": "validation_error",
+      "input": {
+        "tool": "summarize_sources",
+        "details": {
+          "path": "sources"
+        }
+      },
+      "output": null,
+      "error": "[] should be non-empty"
+    }
+  ]
+}
