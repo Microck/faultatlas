@@ -1,4 +1,4 @@
-# FaultAtlas Roadmap
+# Indagine Roadmap
 
 ## Overview
 
@@ -44,7 +44,7 @@ A meta-agent system that automatically debugs other AI agents when they fail. Bu
 
 ## Phase 2: Analysis Pipeline
 
-**Goal:** Build the multi-agent analysis system (Trace Analyzer, Tool Analyzer, Autopsy Controller)
+**Goal:** Build the multi-agent analysis system (Trace Analyzer, Tool Analyzer, Indagine Controller)
 
 **Duration:** ~1 week
 **Status:** Complete (2026-02-11, verifier passed 7/7 must-haves)
@@ -54,21 +54,21 @@ A meta-agent system that automatically debugs other AI agents when they fail. Bu
 - ANLZ-02: Trace Analyzer extracts reasoning chain that led to failure
 - ANLZ-03: Tool Analyzer validates parameters against tool schema
 - ANLZ-04: Tool Analyzer detects wrong tool selection
-- ANLZ-05: Autopsy Controller orchestrates Trace and Tool analyzers
-- ANLZ-06: Autopsy Controller collects findings into structured output
+- ANLZ-05: Indagine Controller orchestrates Trace and Tool analyzers
+- ANLZ-06: Indagine Controller collects findings into structured output
 
 **Success Criteria:**
 1. Trace Analyzer correctly identifies failure step (step N of M) for all 3 test subjects
 2. Trace Analyzer extracts reasoning chain as structured list of steps
 3. Tool Analyzer validates parameters against JSON schemas and reports mismatches
 4. Tool Analyzer detects when wrong tool was selected (SearchAgent scenario)
-5. Autopsy Controller orchestrates both analyzers and waits for completion
-6. Autopsy Controller produces unified FindingsReport with structured output
+5. Indagine Controller orchestrates both analyzers and waits for completion
+6. Indagine Controller produces unified FindingsReport with structured output
 
 **Deliverables:**
 - `src/analyzers/trace_analyzer.py` — Trace parsing and failure point identification
 - `src/analyzers/tool_analyzer.py` — Tool schema validation and selection detection
-- `src/core/autopsy_controller.py` — Multi-agent orchestration
+- `src/core/indagine_controller.py` — Multi-agent orchestration
 - `src/models/findings.py` — Pydantic models for structured findings
 - `tests/test_trace_analyzer.py` — Unit tests for trace parsing
 - `tests/test_tool_analyzer.py` — Unit tests for tool validation

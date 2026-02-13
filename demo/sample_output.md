@@ -1,4 +1,4 @@
-# FaultAtlas Demo Sample Output
+# Indagine Demo Sample Output
 
 This fixture is used by `demo/run_demo.py --mode mock`.
 

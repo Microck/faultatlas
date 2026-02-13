@@ -1,4 +1,4 @@
-# FaultAtlas - Project State
+# Indagine - Project State
 
 ## Current Position
 
@@ -48,19 +48,19 @@ Progress: █████████████░ 13/14 plans (93%)
 | 02-01 | Reasoning chain extraction prioritizes `thought`/`decision` then deterministic fallback from trace artifacts | Preserves explicit model reasoning when present while guaranteeing stable output for Phase 1 traces |
 | 02-02 | SchemaRegistry became the shared schema source while ToolRegistry stayed as a compatibility wrapper | Enables analyzer reuse without breaking subject scenario validation behavior |
 | 02-02 | Wrong-tool detection now checks `metadata.intended_tool` first, then falls back to search-intent heuristic | Makes SearchAgent TOOL_MISUSE diagnosable even when trace metadata is incomplete |
-| 02-03 | Autopsy findings are keyed as `trace_analyzer` and `tool_analyzer` in a unified `FindingsReport` envelope | Creates a stable analyzer contract for Phase 3 diagnosis consumers |
-| 02-03 | AutopsyPipeline uses injected TraceStore and delegates backend/env selection to TraceStore helpers | Keeps pipeline glue Azure-agnostic and avoids duplicate backend configuration parsing |
+| 02-03 | Indagine findings are keyed as `trace_analyzer` and `tool_analyzer` in a unified `FindingsReport` envelope | Creates a stable analyzer contract for Phase 3 diagnosis consumers |
+| 02-03 | IndaginePipeline uses injected TraceStore and delegates backend/env selection to TraceStore helpers | Keeps pipeline glue Azure-agnostic and avoids duplicate backend configuration parsing |
 | 03-01 | `Diagnosis.similar_past_failures` is derived from `similar_past_failure_ids` via computed field | Guarantees DIAG-04 count consistency without manual sync drift |
 | 03-01 | Diagnosis classification priority is deterministic by marker strength (tool misuse > hallucination > prompt ambiguity > context overflow > coordination > fallback) | Keeps root-cause outputs stable and explainable for fixture-driven verification |
 | 03-02 | FixGenerator maps each taxonomy root cause to deterministic fix templates with explicit target files | Guarantees FIX-01..FIX-03 proposal availability for every diagnosis type |
 | 03-02 | Fix proposal diffs use stdlib unified format (`---`/`+++`) generated from exact before/after snippets | Satisfies FIX-04 reviewability and keeps change artifacts auditable |
 | 03-03 | FixHistory now uses auto backend selection (Cosmos when all fix-history env vars exist, otherwise memory) | Keeps local development unblocked while enabling Cosmos-backed similarity history in configured environments |
 | 03-03 | DiagnosisEngine now resolves DIAG-04 links through `FixHistory.find_similar(...)` rather than payload introspection | Makes similarity linking explicit, testable, and backend-driven |
-| 04-02 | DEMO-04 documentation defines exactly 8 counted agents and treats AutopsyController/AutopsyPipeline as orchestration glue | Keeps README and architecture diagram aligned for judge review |
+| 04-02 | DEMO-04 documentation defines exactly 8 counted agents and treats IndagineController/IndaginePipeline as orchestration glue | Keeps README and architecture diagram aligned for judge review |
 | 04-02 | Mermaid `.mmd` is canonical with README fallback render command for PNG generation | Preserves deliverability when headless Mermaid CLI rendering is unavailable |
 | 04-03 | Recording checklist is scenario-anchored and prioritizes live run with explicit mock fallback | Keeps manual video capture repeatable without blocking on Azure/runtime constraints |
 | 04-03 | Submission checklist references both `docs/architecture.png` and `docs/architecture.mmd` | Prevents packaging dead-ends when raster diagram export is unavailable |
-| 04-01 | Live demo runner calls real modules end-to-end (`run_with_failure_detection` → `AutopsyPipeline` → `DiagnosisEngine` → `FixGenerator`) | Demonstrates actual pipeline behavior for video capture instead of synthetic helper wrappers |
+| 04-01 | Live demo runner calls real modules end-to-end (`run_with_failure_detection` → `IndaginePipeline` → `DiagnosisEngine` → `FixGenerator`) | Demonstrates actual pipeline behavior for video capture instead of synthetic helper wrappers |
 | 04-01 | Mock mode is fixture-backed via `demo/sample_output.md` with the same output sections as live mode | Guarantees reliable no-Azure fallback and keeps narration consistent between modes |
 | 04-04 | `docs/architecture.png` is now a committed artifact rendered from `docs/architecture.mmd` | Closes DEMO-04 delivery gap with a review-ready architecture image for submission |
 | 04-04 | Human checkpoint approval is required for visual artifact legibility before marking diagram work done | Ensures judge-facing readability is validated beyond file-level checks |
@@ -87,7 +87,7 @@ Progress: █████████████░ 13/14 plans (93%)
 | 2026-02-11 | Completed Phase 3 Plan 03 execution, added fix-history storage backends, similarity lookup tests, and DiagnosisEngine DIAG-04 wiring |
 | 2026-02-11 | Completed Phase 3 Plan 02 execution, added fix proposal models, unified diff utilities, taxonomy-wide FixGenerator coverage, and tests |
 | 2026-02-11 | Completed Phase 3 Plan 01 execution, added Diagnosis model/taxonomy, deterministic DiagnosisEngine, and taxonomy-coverage tests |
-| 2026-02-11 | Completed Phase 2 Plan 03 execution, added AutopsyController orchestration, pipeline wiring, and integration contract tests |
+| 2026-02-11 | Completed Phase 2 Plan 03 execution, added IndagineController orchestration, pipeline wiring, and integration contract tests |
 | 2026-02-11 | Completed Phase 2 Plan 02 execution, added shared SchemaRegistry and ToolAnalyzer with fixture-driven misuse checks |
 | 2026-02-11 | Completed Phase 2 Plan 01 execution, added trace/findings models and TraceAnalyzer with fixture-driven tests |
 | 2026-02-11 | User approved Phase 1 verification checkpoint; phase marked complete with Cosmos live-check pending |

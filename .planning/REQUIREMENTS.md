@@ -17,8 +17,8 @@
 - [x] **ANLZ-02**: Trace Analyzer extracts reasoning chain that led to failure
 - [x] **ANLZ-03**: Tool Analyzer validates parameters against tool schema
 - [x] **ANLZ-04**: Tool Analyzer detects wrong tool selection
-- [x] **ANLZ-05**: Autopsy Controller orchestrates Trace and Tool analyzers
-- [x] **ANLZ-06**: Autopsy Controller collects findings into structured output
+- [x] **ANLZ-05**: Indagine Controller orchestrates Trace and Tool analyzers
+- [x] **ANLZ-06**: Indagine Controller collects findings into structured output
 
 ### Diagnosis (DIAG)
 

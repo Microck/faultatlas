@@ -1,10 +1,10 @@
-# FaultAtlas
+# Indagine
 
-FaultAtlas is a meta-agent system that debugs other AI agents when they fail: it captures a failure event, analyzes trace and tool behavior, diagnoses root cause with a shared taxonomy, and proposes concrete fixes. For a hackathon demo, this matters because judges can see a full failure-to-fix workflow in one pass instead of reading raw traces manually.
+Indagine is a meta-agent system that debugs other AI agents when they fail: it captures a failure event, analyzes trace and tool behavior, diagnoses root cause with a shared taxonomy, and proposes concrete fixes. For a hackathon demo, this matters because judges can see a full failure-to-fix workflow in one pass instead of reading raw traces manually.
 
 ## Architecture (DEMO-04 Agent Definition)
 
-In this project, an **agent** is a distinct role/module invoked in the autopsy pipeline.
+In this project, an **agent** is a distinct role/module invoked in the Indagine pipeline.
 
 The 8 agents shown in DEMO-04 are:
 - `BookingAgent`
@@ -16,7 +16,7 @@ The 8 agents shown in DEMO-04 are:
 - `DiagnosisEngine`
 - `FixGenerator`
 
-`AutopsyController` and `AutopsyPipeline` are orchestration glue (shown in the diagram), not counted as separate agents.
+`IndagineController` and `IndaginePipeline` are orchestration glue (shown in the diagram), not counted as separate agents.
 
 - Diagram: `docs/architecture.png`
 - Diagram source (Mermaid): `docs/architecture.mmd`

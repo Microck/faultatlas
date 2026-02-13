@@ -1,5 +1,5 @@
 [project]
-name = "agent-autopsy"
+name = "indagine"
 version = "0.1.0"
 description = "Meta-agent system that debugs other agents when they fail"
 requires-python = ">=3.11"

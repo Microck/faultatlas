@@ -1,4 +1,4 @@
-# FaultAtlas Failure Taxonomy
+# Indagine Failure Taxonomy
 
 This taxonomy is the shared diagnosis vocabulary used by `DiagnosisEngine` and `FixGenerator`.
 

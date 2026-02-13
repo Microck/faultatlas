@@ -1,8 +1,8 @@
-# FaultAtlas
+# Indagine
 
 ## What This Is
 
-A meta-agent system that automatically debugs other AI agents when they fail. When an agent in a multi-agent system fails, FaultAtlas detects the failure, analyzes execution traces, diagnoses the root cause using a failure taxonomy, suggests concrete fixes, and validates the fixes by re-running the failed scenario. Built for the Microsoft AI Dev Days Hackathon 2026.
+A meta-agent system that automatically debugs other AI agents when they fail. When an agent in a multi-agent system fails, Indagine detects the failure, analyzes execution traces, diagnoses the root cause using a failure taxonomy, suggests concrete fixes, and validates the fixes by re-running the failed scenario. Built for the Microsoft AI Dev Days Hackathon 2026.
 
 ## Core Value
 
@@ -21,7 +21,7 @@ A meta-agent system that automatically debugs other AI agents when they fail. Wh
 - [ ] Trace Analyzer agent that parses execution traces and finds failure points
 - [ ] Tool Analyzer agent that validates tool usage against schemas
 - [ ] Prompt Analyzer agent that checks for ambiguity and missing context
-- [ ] Autopsy Controller that orchestrates analysis agents
+- [ ] Indagine Controller that orchestrates analysis agents
 - [ ] Diagnosis Engine with 6-type failure taxonomy
 - [ ] Fix Generator that proposes prompt/config/guardrail changes
 - [ ] Validation Loop that re-runs scenarios with fixes applied

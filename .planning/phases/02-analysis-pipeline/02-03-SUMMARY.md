@@ -10,9 +10,9 @@ requires:
   - phase: 02-02
     provides: ToolAnalyzer misuse detection and SchemaRegistry-based validation
 provides:
-  - AutopsyController orchestration entrypoint that runs TraceAnalyzer and ToolAnalyzer
+  - IndagineController orchestration entrypoint that runs TraceAnalyzer and ToolAnalyzer
   - Unified FindingsReport keyed by analyzer name for downstream diagnosis
-  - AutopsyPipeline glue that loads trace by failure_id from injected TraceStore backend
+  - IndaginePipeline glue that loads trace by failure_id from injected TraceStore backend
 affects: [02-analysis-pipeline, 03-diagnosis-fixes]
 
 tech-stack:
@@ -22,26 +22,26 @@ tech-stack:
 
 key-files:
   created:
-    - src/core/autopsy_controller.py
-    - src/core/autopsy_pipeline.py
-    - tests/test_autopsy_controller.py
+    - src/core/indagine_controller.py
+    - src/core/indagine_pipeline.py
+    - tests/test_indagine_controller.py
   modified: []
 
 key-decisions:
   - "Findings are namespaced as trace_analyzer/tool_analyzer with list payloads to stay compatible with FindingsReport typing."
-  - "AutopsyPipeline delegates backend/env selection to TraceStore helpers instead of parsing Cosmos settings directly."
+  - "IndaginePipeline delegates backend/env selection to TraceStore helpers instead of parsing Cosmos settings directly."
 
 patterns-established:
-  - "AutopsyController exposes run_autopsy(trace_record) as the stable diagnosis entrypoint for analyzer orchestration."
-  - "AutopsyPipeline accepts injected TraceStore and reads trace_record from get_trace(failure_id) before controller execution."
+  - "IndagineController exposes run_indagine(trace_record) as the stable diagnosis entrypoint for analyzer orchestration."
+  - "IndaginePipeline accepts injected TraceStore and reads trace_record from get_trace(failure_id) before controller execution."
 
 duration: 3 min
 completed: 2026-02-11
 ---
 
-# Phase 2 Plan 3: Autopsy Controller Orchestration Summary
+# Phase 2 Plan 3: Indagine Controller Orchestration Summary
 
-**AutopsyController now converts stored traces into a unified FindingsReport by orchestrating TraceAnalyzer and ToolAnalyzer through a stable controller and pipeline entrypoint.**
+**IndagineController now converts stored traces into a unified FindingsReport by orchestrating TraceAnalyzer and ToolAnalyzer through a stable controller and pipeline entrypoint.**
 
 ## Performance
 
@@ -52,27 +52,27 @@ completed: 2026-02-11
 - **Files modified:** 3
 
 ## Accomplishments
-- Added `src/core/autopsy_controller.py` with `run_autopsy(trace_record)` and `AutopsyController` orchestration over trace/tool analyzers.
-- Added `src/core/autopsy_pipeline.py` as a thin injected-store pipeline (`failure_id -> TraceStore.get_trace -> run_autopsy`).
-- Added `tests/test_autopsy_controller.py` integration coverage for unified report shape, SearchAgent tool-issue detection, and injected-store pipeline wiring.
+- Added `src/core/indagine_controller.py` with `run_indagine(trace_record)` and `IndagineController` orchestration over trace/tool analyzers.
+- Added `src/core/indagine_pipeline.py` as a thin injected-store pipeline (`failure_id -> TraceStore.get_trace -> run_indagine`).
+- Added `tests/test_indagine_controller.py` integration coverage for unified report shape, SearchAgent tool-issue detection, and injected-store pipeline wiring.
 
 ## Task Commits
 
 Each task was committed atomically:
 
-1. **Task 1: Build AutopsyController orchestration API** - `39e9719` (feat)
+1. **Task 1: Build IndagineController orchestration API** - `39e9719` (feat)
 2. **Task 2: Add integration test for unified FindingsReport shape** - `8756fc7` (test)
 
 **Plan metadata:** Pending (created after summary/state updates)
 
 ## Files Created/Modified
-- `src/core/autopsy_controller.py` - Controller API that runs analyzers and returns one unified `FindingsReport`.
-- `src/core/autopsy_pipeline.py` - Pipeline glue for loading traces from an injected `TraceStore` and invoking controller orchestration.
-- `tests/test_autopsy_controller.py` - Integration tests validating output shape and SearchAgent misuse findings.
+- `src/core/indagine_controller.py` - Controller API that runs analyzers and returns one unified `FindingsReport`.
+- `src/core/indagine_pipeline.py` - Pipeline glue for loading traces from an injected `TraceStore` and invoking controller orchestration.
+- `tests/test_indagine_controller.py` - Integration tests validating output shape and SearchAgent misuse findings.
 
 ## Decisions Made
 - Used explicit analyzer keys (`trace_analyzer`, `tool_analyzer`) in `FindingsReport.findings` to keep outputs stable and diagnosable.
-- Kept backend/env selection in `TraceStore` by introducing thin `create_trace_store`/`create_autopsy_pipeline` helpers instead of duplicating config parsing.
+- Kept backend/env selection in `TraceStore` by introducing thin `create_trace_store`/`create_indagine_pipeline` helpers instead of duplicating config parsing.
 
 ## Deviations from Plan
 

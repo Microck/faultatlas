@@ -28,7 +28,7 @@ key-files:
 
 key-decisions:
   - "Used docs/architecture.mmd as canonical source and committed docs/architecture.png as the required DEMO-04 submission artifact."
-  - "Accepted checkpoint only after human verification confirmed all 8 agents plus TraceStore and AutopsyController/AutopsyPipeline glue were readable."
+  - "Accepted checkpoint only after human verification confirmed all 8 agents plus TraceStore and IndagineController/IndaginePipeline glue were readable."
 
 patterns-established:
   - "Diagram source and rendered artifact stay linked (`.mmd` source, `.png` submission output)."

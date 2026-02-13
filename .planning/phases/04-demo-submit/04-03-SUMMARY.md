@@ -41,7 +41,7 @@ completed: 2026-02-11
 
 # Phase 04 Plan 03: Recording and Submission Checklist Summary
 
-**FaultAtlas now includes execution-ready recording and submission checklists that convert the existing demo/docs artifacts into a repeatable, portal-ready handoff package.**
+**Indagine now includes execution-ready recording and submission checklists that convert the existing demo/docs artifacts into a repeatable, portal-ready handoff package.**
 
 ## Performance
 

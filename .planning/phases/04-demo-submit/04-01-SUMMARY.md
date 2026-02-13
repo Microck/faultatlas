@@ -2,7 +2,7 @@
 phase: 04-demo-submit
 plan: "01"
 subsystem: demo
-tags: [python, demo, fixtures, autopsy-pipeline]
+tags: [python, demo, fixtures, indagine-pipeline]
 
 requires:
   - phase: 03-diagnosis-fixes
@@ -26,7 +26,7 @@ key-files:
     - src/storage/trace_store.py
 
 key-decisions:
-  - "Live demo mode executes the real pipeline using run_with_failure_detection -> TraceStore -> AutopsyPipeline -> DiagnosisEngine -> FixGenerator."
+  - "Live demo mode executes the real pipeline using run_with_failure_detection -> TraceStore -> IndaginePipeline -> DiagnosisEngine -> FixGenerator."
   - "Mock demo mode reads a fenced JSON fixture from demo/sample_output.md so recording never blocks on Azure availability."
 
 patterns-established:
@@ -39,7 +39,7 @@ completed: 2026-02-11
 
 # Phase 4 Plan 1: Demo Script and Runner Summary
 
-**FaultAtlas now has a rehearsable 2-minute BookingAgent failure script and a single command runner that emits full failure-to-fix output in either live memory-backed mode or deterministic mock mode.**
+**Indagine now has a rehearsable 2-minute BookingAgent failure script and a single command runner that emits full failure-to-fix output in either live memory-backed mode or deterministic mock mode.**
 
 ## Performance
 
@@ -54,7 +54,7 @@ completed: 2026-02-11
 - Added `demo/scenario.md` with a timestamped 0:00-2:00 narration, terminal actions, DD/MM/YYYY input, and output callouts.
 - Added `demo/run_demo.py` with `--mode live` and `--mode mock` plus `--store memory|cosmos` for no-Azure fallback paths.
 - Added `demo/sample_output.md` with deterministic sections for failure event, analyzer findings, diagnosis, and fix diff.
-- Verified `--mode live --store memory` exercises FailureDetector -> TraceStore -> AutopsyPipeline -> DiagnosisEngine -> FixGenerator.
+- Verified `--mode live --store memory` exercises FailureDetector -> TraceStore -> IndaginePipeline -> DiagnosisEngine -> FixGenerator.
 
 ## Task Commits
 
@@ -74,7 +74,7 @@ Each task was committed atomically:
 
 ## Decisions Made
 
-- Kept the live runner on real modules (not `run_and_capture`) by invoking `run_with_failure_detection` with `run_subject_scenario` and then passing stored traces through `AutopsyPipeline`.
+- Kept the live runner on real modules (not `run_and_capture`) by invoking `run_with_failure_detection` with `run_subject_scenario` and then passing stored traces through `IndaginePipeline`.
 - Standardized mock/live output to the same top-level sections so narration and terminal highlights remain identical across fallback paths.
 
 ## Deviations from Plan

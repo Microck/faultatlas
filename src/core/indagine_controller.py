@@ -14,7 +14,7 @@ AnalyzerResult = TraceFinding | ToolFinding
 AnalyzerFn = Callable[[TraceRecord | dict[str, Any]], AnalyzerResult]
 
 
-class AutopsyController:
+class IndagineController:
     def __init__(
         self,
         trace_analyzer: TraceAnalyzer | None = None,
@@ -32,7 +32,7 @@ class AutopsyController:
             ("tool_analyzer", self._tool_analyzer.analyze),
         )
 
-    def run_autopsy(self, trace_record: TraceRecord | dict[str, Any]) -> FindingsReport:
+    def run_indagine(self, trace_record: TraceRecord | dict[str, Any]) -> FindingsReport:
         findings = self._run_analyzers(trace_record)
         return FindingsReport(findings=findings)
 
@@ -68,8 +68,8 @@ class AutopsyController:
         return findings
 
 
-def run_autopsy(
+def run_indagine(
     trace_record: TraceRecord | dict[str, Any],
     execution_mode: ExecutionMode = "sequential",
 ) -> FindingsReport:
-    return AutopsyController(execution_mode=execution_mode).run_autopsy(trace_record)
+    return IndagineController(execution_mode=execution_mode).run_indagine(trace_record)

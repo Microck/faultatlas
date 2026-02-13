@@ -1,4 +1,4 @@
-# FaultAtlas - Development Plan
+# Indagine - Development Plan
 
 **Hackathon:** Microsoft AI Dev Days 2026 (Feb 10 - Mar 15)
 **Target Prize:** AI Apps & Agents ($20,000)
@@ -17,9 +17,9 @@
 - [ ] SummaryAgent - fails on context overflow
 - [ ] Predictable failure triggers for each
 
-## Phase 3: Core Autopsy System (Days 3-5)
+## Phase 3: Core Indagine System (Days 3-5)
 - [ ] Failure Detector - catches agent failures
-- [ ] Autopsy Controller - orchestrates analysis
+- [ ] Indagine Controller - orchestrates analysis
 - [ ] Trace Analyzer agent - parses execution traces
 - [ ] Tool Analyzer agent - validates parameter usage
 

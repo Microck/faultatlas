@@ -44,7 +44,7 @@ completed: 2026-02-11
 
 # Phase 1 Plan 2: Deterministic Subject Scenarios Summary
 
-**Deterministic booking/search validation failures and a reproducible hallucination scenario now produce stable JSON outputs for autopsy pipeline inputs.**
+**Deterministic booking/search validation failures and a reproducible hallucination scenario now produce stable JSON outputs for Indagine pipeline inputs.**
 
 ## Performance
 

@@ -67,7 +67,7 @@ def _extract_scenario_input(trace_record: dict[str, Any]) -> dict[str, Any] | No
 
 
 def _run_live(subject: str, store: str, timeout_s: float) -> dict[str, Any]:
-    from src.core import autopsy_pipeline, diagnosis_engine, fix_generator
+    from src.core import diagnosis_engine, fix_generator, indagine_pipeline
     from src.core.failure_detector import run_with_failure_detection
     from src.storage.trace_store import StoreBackend, TraceStore
     from src.subjects.run_subjects import run_subject_scenario
@@ -82,7 +82,7 @@ def _run_live(subject: str, store: str, timeout_s: float) -> dict[str, Any]:
     trace_store.store_trace(failure_event, trace_record)
     stored_trace = trace_store.get_trace(failure_event.failure_id)
 
-    pipeline = autopsy_pipeline.AutopsyPipeline(trace_store=trace_store)
+    pipeline = indagine_pipeline.IndaginePipeline(trace_store=trace_store)
     findings_report = pipeline.run(failure_event.failure_id)
     diagnosis = diagnosis_engine.DiagnosisEngine().diagnose(findings_report)
     fixes = fix_generator.FixGenerator().generate_fixes(diagnosis, findings_report)
@@ -104,7 +104,7 @@ def _run_live(subject: str, store: str, timeout_s: float) -> dict[str, Any]:
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run FaultAtlas demo in live or fixture-backed mode."
+        description="Run Indagine demo in live or fixture-backed mode."
     )
     parser.add_argument("--mode", choices=("mock", "live"), default="mock")
     parser.add_argument("--subject", choices=SUBJECT_CHOICES, default="booking")

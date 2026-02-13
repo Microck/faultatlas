@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Protocol
 
-from src.core.autopsy_controller import AutopsyController
+from src.core.indagine_controller import IndagineController
 from src.models.findings import FindingsReport
 from src.storage.trace_store import StoreBackend, TraceStore
 
@@ -11,14 +11,14 @@ class TraceStoreLike(Protocol):
     def get_trace(self, failure_id: str) -> dict[str, Any]: ...
 
 
-class AutopsyPipeline:
+class IndaginePipeline:
     def __init__(
         self,
         trace_store: TraceStoreLike,
-        controller: AutopsyController | None = None,
+        controller: IndagineController | None = None,
     ) -> None:
         self._trace_store = trace_store
-        self._controller = controller or AutopsyController()
+        self._controller = controller or IndagineController()
 
     def run(self, failure_id: str) -> FindingsReport:
         stored_trace = self._trace_store.get_trace(failure_id)
@@ -28,29 +28,29 @@ class AutopsyPipeline:
                 "TraceStore.get_trace must return a payload with a dictionary 'trace_record'."
             )
 
-        return self._controller.run_autopsy(trace_record)
+        return self._controller.run_indagine(trace_record)
 
 
 def create_trace_store(backend: StoreBackend = "auto") -> TraceStore:
     return TraceStore(backend=backend)
 
 
-def create_autopsy_pipeline(
+def create_indagine_pipeline(
     backend: StoreBackend = "auto",
     trace_store: TraceStoreLike | None = None,
-    controller: AutopsyController | None = None,
-) -> AutopsyPipeline:
+    controller: IndagineController | None = None,
+) -> IndaginePipeline:
     selected_trace_store = trace_store or create_trace_store(backend=backend)
-    return AutopsyPipeline(trace_store=selected_trace_store, controller=controller)
+    return IndaginePipeline(trace_store=selected_trace_store, controller=controller)
 
 
-def run_autopsy_for_failure(
+def run_indagine_for_failure(
     failure_id: str,
     backend: StoreBackend = "auto",
     trace_store: TraceStoreLike | None = None,
-    controller: AutopsyController | None = None,
+    controller: IndagineController | None = None,
 ) -> FindingsReport:
-    pipeline = create_autopsy_pipeline(
+    pipeline = create_indagine_pipeline(
         backend=backend,
         trace_store=trace_store,
         controller=controller,

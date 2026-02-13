@@ -30,7 +30,7 @@ key-files:
   modified: [README.md]
 
 key-decisions:
-  - "Defined DEMO-04 as exactly 8 agent roles; AutopsyController/AutopsyPipeline are orchestration glue and not counted as agents."
+  - "Defined DEMO-04 as exactly 8 agent roles; IndagineController/IndaginePipeline are orchestration glue and not counted as agents."
   - "Kept `docs/architecture.mmd` as the canonical diagram artifact and documented manual PNG rendering when headless Mermaid rendering fails."
 
 patterns-established:
@@ -75,7 +75,7 @@ _Note: PNG rendering failed in this environment; Mermaid source and fallback ins
 
 ## Decisions Made
 - Counted exactly 8 roles as agents for DEMO-04: `BookingAgent`, `SearchAgent`, `SummaryAgent`, `FailureDetector`, `TraceAnalyzer`, `ToolAnalyzer`, `DiagnosisEngine`, and `FixGenerator`.
-- Kept `AutopsyController` / `AutopsyPipeline` in the diagram as non-agent orchestration glue to avoid agent-count ambiguity.
+- Kept `IndagineController` / `IndaginePipeline` in the diagram as non-agent orchestration glue to avoid agent-count ambiguity.
 - Chose `.mmd` as the primary architecture artifact when headless environment constraints blocked PNG generation.
 
 ## Deviations from Plan

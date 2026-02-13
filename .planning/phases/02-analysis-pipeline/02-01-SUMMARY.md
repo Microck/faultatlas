@@ -81,7 +81,7 @@ Each task was committed atomically:
 
 ## Decisions Made
 - Used a single deterministic failure heuristic (first step with `error` or validation marker) to keep analyzer output stable across reruns.
-- Kept `ToolFinding` intentionally minimal/optional to unblock future AutopsyController result unification without premature constraints.
+- Kept `ToolFinding` intentionally minimal/optional to unblock future IndagineController result unification without premature constraints.
 
 ## Deviations from Plan
 

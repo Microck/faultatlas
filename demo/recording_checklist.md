@@ -12,7 +12,7 @@
 - [ ] System audio is disabled or balanced so voice-over stays clear.
 - [ ] Terminal font is readable at video resolution (increase before recording if needed).
 - [ ] Terminal window is sized wide enough to avoid wrapped JSON keys.
-- [ ] Start from repository root: `agent-autopsy/`.
+- [ ] Start from repository root: `.`
 - [ ] Keep fallback command ready: `.venv/bin/python demo/run_demo.py --mode mock`.
 
 ## Commands to Run (In Order)

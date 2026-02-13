@@ -3,8 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.core.autopsy_controller import run_autopsy
-from src.core.autopsy_pipeline import AutopsyPipeline
+from src.core.indagine_controller import run_indagine
+from src.core.indagine_pipeline import IndaginePipeline
 
 
 _FIXTURE_DIR = Path(__file__).parent / "fixtures" / "traces"
@@ -15,8 +15,8 @@ def _load_trace_fixture(name: str) -> dict[str, object]:
     return json.loads(fixture_path.read_text(encoding="utf-8"))
 
 
-def test_run_autopsy_returns_unified_findings_report_shape() -> None:
-    report = run_autopsy(_load_trace_fixture("booking"))
+def test_run_indagine_returns_unified_findings_report_shape() -> None:
+    report = run_indagine(_load_trace_fixture("booking"))
 
     assert set(report.findings.keys()) == {"trace_analyzer", "tool_analyzer"}
 
@@ -28,8 +28,8 @@ def test_run_autopsy_returns_unified_findings_report_shape() -> None:
     assert trace_finding.reasoning_chain
 
 
-def test_run_autopsy_reports_tool_issue_for_search_agent_fixture() -> None:
-    report = run_autopsy(_load_trace_fixture("tool_calls_search"))
+def test_run_indagine_reports_tool_issue_for_search_agent_fixture() -> None:
+    report = run_indagine(_load_trace_fixture("tool_calls_search"))
 
     tool_findings = report.findings["tool_analyzer"]
     assert tool_findings
@@ -45,7 +45,7 @@ def test_run_autopsy_reports_tool_issue_for_search_agent_fixture() -> None:
     assert issue_count >= 1
 
 
-def test_autopsy_pipeline_uses_injected_trace_store() -> None:
+def test_indagine_pipeline_uses_injected_trace_store() -> None:
     trace_record = _load_trace_fixture("booking")
     requested_failure_ids: list[str] = []
 
@@ -54,7 +54,7 @@ def test_autopsy_pipeline_uses_injected_trace_store() -> None:
             requested_failure_ids.append(failure_id)
             return {"trace_record": trace_record}
 
-    pipeline = AutopsyPipeline(trace_store=StubTraceStore())
+    pipeline = IndaginePipeline(trace_store=StubTraceStore())
     report = pipeline.run("booking-failure")
 
     assert requested_failure_ids == ["booking-failure"]
