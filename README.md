@@ -30,10 +30,10 @@ npx -y @mermaid-js/mermaid-cli -i docs/architecture.mmd -o docs/architecture.png
 
 ## Setup
 
-1. Install dependencies:
+1. Install dependencies (uv):
 
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 2. Configure environment variables (create your local `.env` from `.env.example`):
@@ -53,15 +53,21 @@ pip install -r requirements.txt
 Run deterministic subject failure scenarios:
 
 ```bash
-python -m src.subjects.run_subjects booking
-python -m src.subjects.run_subjects search
-python -m src.subjects.run_subjects summary
+uv run python -m src.subjects.run_subjects booking
+uv run python -m src.subjects.run_subjects search
+uv run python -m src.subjects.run_subjects summary
 ```
 
 Run the demo output flow (mock mode):
 
 ```bash
-python demo/run_demo.py --mode mock
+uv run python demo/run_demo.py --mode mock
+```
+
+Run tests:
+
+```bash
+uv run pytest -q
 ```
 
 ## Demo Assets
