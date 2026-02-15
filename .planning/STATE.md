@@ -2,11 +2,11 @@
 
 ## Current Position
 
-Phase: 4 of 4 (Demo & Submit)
-Plan: 5 of 5
+Phase: 5 of 5 (Perfect Stack)
+Plan: 1 of 1
 Status: Phase complete
-Last activity: 2026-02-15 - Completed 04-05-PLAN.md
-Progress: ███████████████ 14/14 plans (100%)
+Last activity: 2026-02-15 - Completed 05-01-PLAN.md
+Progress: █████████████████ 15/15 plans (100%)
 
 ---
 
@@ -18,6 +18,7 @@ Progress: ███████████████ 14/14 plans (100%)
 | 2 | Analysis Pipeline | Complete | 3/3 plans |
 | 3 | Diagnosis & Fixes | Complete | 3/3 plans |
 | 4 | Demo & Submit | Complete | 5/5 plans |
+| 5 | Perfect Stack | Complete | 1/1 plans |
 
 ---
 
@@ -64,13 +65,16 @@ Progress: ███████████████ 14/14 plans (100%)
 | 04-01 | Mock mode is fixture-backed via `demo/sample_output.md` with the same output sections as live mode | Guarantees reliable no-Azure fallback and keeps narration consistent between modes |
 | 04-04 | `docs/architecture.png` is now a committed artifact rendered from `docs/architecture.mmd` | Closes DEMO-04 delivery gap with a review-ready architecture image for submission |
 | 04-04 | Human checkpoint approval is required for visual artifact legibility before marking diagram work done | Ensures judge-facing readability is validated beyond file-level checks |
+| 05-01 | `pyproject.toml` is now the single source of truth for dependencies with a committed `uv.lock` | Enables reproducible environments via `uv sync` and avoids requirements drift |
+| 05-01 | Default local workflow is `uv sync` + `uv run ...` (tests/lint/scripts) | Improves DX and ensures commands run against the locked environment |
+| 05-01 | Ruff is configured to avoid formatting-only churn while preserving basic linting | Keeps lint usable without forcing broad reformatting diffs |
 
 ---
 
 ## Blockers/Concerns Carried Forward
 
 - Live Cosmos verification still requires user-provided `COSMOS_ENDPOINT`, `COSMOS_KEY`, `COSMOS_DATABASE`, `COSMOS_CONTAINER_TRACES`, and `COSMOS_CONTAINER_FIXES`.
-- System Python in this environment lacks required runtime modules; use `.venv/bin/python -m ...` for deterministic plan verification.
+- System Python in this environment may lack required runtime modules; use `uv sync` + `uv run ...` for deterministic verification.
 - Manual follow-ups remain (video recording + portal submission), tracked out-of-band via `demo/recording_checklist.md` and `demo/submission_checklist.md`.
 
 ---
@@ -79,6 +83,7 @@ Progress: ███████████████ 14/14 plans (100%)
 
 | Date | Activity |
 |------|----------|
+| 2026-02-15 | Completed Phase 5 Plan 01: migrated to uv-managed dependencies with `pyproject.toml` + `uv.lock`, updated README, and verified `uv run pytest` |
 | 2026-02-15 | Completed Phase 4 Plan 05: de-blocked submission checklist to treat video/portal steps as manual follow-ups and closed remaining automation gap |
 | 2026-02-11 | Completed Phase 4 Plan 04 execution, verified prior render commit, and closed the architecture PNG submission gap with approved human readability check |
 | 2026-02-11 | Completed Phase 4 Plan 03 execution and finalized recording/submission checklists for final packaging |
@@ -102,8 +107,8 @@ Progress: ███████████████ 14/14 plans (100%)
 ## Session Continuity
 
 Last session: 2026-02-15
-Stopped at: Completed 04-05 submission checklist de-blocking plan
-Resume file: .planning/phases/04-demo-submit/04-05-SUMMARY.md
+Stopped at: Completed 05-01 perfect stack migration plan
+Resume file: .planning/phases/05-perfect-stack/05-01-SUMMARY.md
 
 ---
 
